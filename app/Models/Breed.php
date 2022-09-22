@@ -5,24 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pets extends Model
+class Breed extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-
     /**
      * The relationships that should always be loaded.
      *
      * @var array
      */
-    protected $with = ['owner'];
+    protected $with = ['pets'];
 
-    public function hasOwner() {
-        return $this->belongsTo(Owner::class);
-    }
-
-    public function hasBreed() {
-        return $this->hasMany(Breed::class);
+    public function breed() {
+        $this->belongsTo(Pets::class);
     }
 }

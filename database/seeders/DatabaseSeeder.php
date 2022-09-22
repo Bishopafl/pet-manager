@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Breed;
 use App\Models\Owner;
 use App\Models\Pets;
 use Database\Factories\OwnerFactory;
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Owner::factory()->count(10)->create();
-        Pets::factory()->count(10)->create();
+        // Pets::factory()->count(10)->create();
+        Breed::factory()->count(3)->create();
     }
 }
