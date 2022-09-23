@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOwnerRequest;
 use App\Http\Requests\UpdateOwnerRequest;
 use App\Models\Owner;
+use App\Models\Pets;
 
 class OwnerController extends Controller
 {
@@ -15,7 +16,11 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        //
+        $query = Owner::latest();
+        $query->join('owners', 'pets.owner_id', '=', 'owners.id')
+            ->select(['pets.*', 'owners.*']);
+        $owners = $query->get();
+        return $owners;
     }
 
     /**

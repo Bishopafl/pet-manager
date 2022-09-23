@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePetsRequest;
 use App\Http\Requests\UpdatePetsRequest;
+use App\Models\Breed;
 use App\Models\Pets;
 
 class PetsController extends Controller
@@ -15,72 +16,56 @@ class PetsController extends Controller
      */
     public function index()
     {
-        //
+        $query = Pets::latest();
+        $query->join('pets', 'breed.breed_id', '=', 'breed.id')
+            ->select(['pets.*', 'breeds.*']);
+        $breeds = $query->get();
+        // $owner = Owner::with('pets')->latest()->get();
+        return $breeds;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePetsRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StorePetsRequest $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pets  $pets
-     * @return \Illuminate\Http\Response
-     */
     public function show(Pets $pets)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pets  $pets
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Pets $pets)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatePetsRequest  $request
-     * @param  \App\Models\Pets  $pets
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdatePetsRequest $request, Pets $pets)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pets  $pets
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Pets $pets)
     {
         //
     }
+    
+    public function PetListings() {
+        $pets = Pets::paginate(5);
+        $breeds = Breed::all();
+        
+
+        return view('dashboard.pet_listings', compact('pets', 'breeds'));
+    }
+
+    public function PetDetails($id) {
+        $pets = Pets::findOrFail($id);
+        $breeds = Breed::findOrFail($id);
+        return view('dashboard.pet_details', compact('pets', 'breeds'));
+    }
+
 }

@@ -18,11 +18,11 @@ class Pets extends Model
      */
     protected $with = ['owner'];
 
-    public function hasOwner() {
+    public function owner() {
         return $this->belongsTo(Owner::class);
     }
 
-    public function hasBreed() {
-        return $this->hasMany(Breed::class);
+    public function breed() {
+        return $this->hasMany(Pets::class, 'breed_id');
     }
 }

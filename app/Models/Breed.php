@@ -18,6 +18,10 @@ class Breed extends Model
     protected $with = ['pets'];
 
     public function breed() {
-        $this->belongsTo(Pets::class);
+        return $this->belongsTo(Pets::class);
+    }
+
+    public function pets() {
+        return $this->belongsTo(Breed::class);
     }
 }

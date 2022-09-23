@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PetsController;
+use App\Models\Owner;
+use App\Models\Pets;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.index',);
 });
+
+Route::get('/petlisting', [PetsController::class, 'PetListings'])->name('pet.listings');
+Route::get('/petdetails/{id}', [PetsController::class, 'PetDetails'])->name('pet.details');
