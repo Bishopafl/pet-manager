@@ -16,7 +16,7 @@
                                             <th>#</th>
                                             <th>Pet Name</th>
                                             <th>Pet Date of Birth</th>
-                                            <th>Pet Breed</th>
+                                            <th>Pet Owner</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -27,7 +27,7 @@
                                                 <th>1</th>
                                                 <td>{{ $pet->pet_name }}</td>
                                                 <td>{{ $pet->pet_dob }}</td>
-                                                <td>{{ $pet->pet_description }}</td>
+                                                <td>{{ $pet->owner->name }}</td>
                                                     
                                             
                                                 <td>

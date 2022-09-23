@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
         //     OwnerFactory::class,
         // ]);
 
-        // Owner::factory()->count(10)->create();
-        // Pets::factory()->count(10)->create();
+        Owner::factory()->count(10)->create();
+        Pets::factory()->count(10)->create();
         Breed::factory()->count(3)->create();
     }
 }

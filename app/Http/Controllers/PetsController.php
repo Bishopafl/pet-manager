@@ -6,6 +6,7 @@ use App\Http\Requests\StorePetsRequest;
 use App\Http\Requests\UpdatePetsRequest;
 use App\Models\Breed;
 use App\Models\Pets;
+use Carbon\Carbon;
 
 class PetsController extends Controller
 {
@@ -58,14 +59,14 @@ class PetsController extends Controller
         $pets = Pets::paginate(5);
         $breeds = Breed::all();
         
-
         return view('dashboard.pet_listings', compact('pets', 'breeds'));
     }
 
     public function PetDetails($id) {
         $pets = Pets::findOrFail($id);
         $breeds = Breed::findOrFail($id);
-        return view('dashboard.pet_details', compact('pets', 'breeds'));
+        $age = Carbon::parse($pets->pet_dob)->diff(Carbon::now())->y;
+        return view('dashboard.pet_details', compact('pets', 'breeds', 'age'));
     }
 
 }

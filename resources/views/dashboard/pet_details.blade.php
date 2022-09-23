@@ -27,7 +27,7 @@
                                                 <th>{{ $pets->id }}</th>
                                                 <th>{{ $pets->pet_name }}</th>
                                                 <th>{{ $pets->pet_dob }}</th>
-                                                <th>{{ $pets->pet_dob }}</th>
+                                                <th>{{ $age }}</th>
                                                 <th>{{ $breeds->breed_name }}</th>
                                                 <th>{{ $pets->pet_description }}</th>
                                                 <th>{{ $pets->owner->name }}</th>
